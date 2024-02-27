@@ -1,26 +1,33 @@
 <script lang="ts">
-  import { obterCategorias } from '@/http/index';
+import { obterCategorias } from '@/http/index';
 import type ICategoria from '@/interfaces/ICategoria';
+import CardCategoria from './CardCategoria.vue';
 
-  export default {
-    data() {
-      return {
-        categorias: [] as ICategoria[]
-      }
-    },
-
-    async created() {
-      this.categorias = await obterCategorias();
-    }
-  }
+export default {
+  data() {
+    return {
+      categorias: [] as ICategoria[]
+    };
+  },
+  async created() {
+    this.categorias = await obterCategorias();
+  },
+  components: { CardCategoria }
+}
 </script>
 
 <template>
   <section class="selecionar-ingredientes">
     <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
-    <p class="paragrafo-lg instrucoes">Selecione abaixo os ingredientes que você quer usar nesta receita:</p>
+
+    <p class="paragrafo-lg instrucoes">
+      Selecione abaixo os ingredientes que você quer usar nesta receita:
+    </p>
+
     <ul class="categorias">
-      <li v-for="categoria in categorias" :key="categoria.nome">{{ categoria.nome }}</li>
+      <li v-for="categoria in categorias" :key="categoria.nome">
+        <CardCategoria :categoria="categoria" />
+      </li>
     </ul>
 
     <p class="paragrafo dica">
@@ -30,38 +37,38 @@ import type ICategoria from '@/interfaces/ICategoria';
 </template>
 
 <style scoped>
-  .selecionar-ingredientes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.selecionar-ingredientes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .titulo-ingredientes {
-    color: var(--verde-medio, #3D6D4A);
-    display: block;
-    margin-bottom: 1.5rem;
-  }
+.titulo-ingredientes {
+  color: var(--verde-medio, #3D6D4A);
+  display: block;
+  margin-bottom: 1.5rem;
+}
 
-  .instrucoes {
-    margin-bottom: 2rem;
-  }
+.instrucoes {
+  margin-bottom: 2rem;
+}
 
-  .categorias {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
+.categorias {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
 
+.dica {
+  align-self: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+@media only screen and (max-width: 767px) {
   .dica {
-    align-self: flex-start;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
   }
-
-  @media only screen and (max-width: 767px) {
-    .dica {
-      margin-bottom: 2.5rem;
-    }
-  }
+}
 </style>
