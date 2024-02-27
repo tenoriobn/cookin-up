@@ -5,7 +5,7 @@ import Tag from './Tag.vue';
 
   export default {
     props: {
-        categoria: { type: Object as PropType<ICategoria>, required: true }
+      categoria: { type: Object as PropType<ICategoria>, required: true }
     },
     components: { Tag }
 }
