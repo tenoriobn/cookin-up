@@ -11,7 +11,10 @@ import SuaLista from './SuaLista.vue';
     methods: {
       adicionarIngrediente(ingrediente: string) {
         this.ingredientes.push(ingrediente)
-      }
+      },
+      removerIngrediente(ingrediente: string) {
+        this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+      },
     }
   }
 </script>
@@ -21,6 +24,7 @@ import SuaLista from './SuaLista.vue';
     <SuaLista :ingredientes="ingredientes" />
     <SelecionarIngredientes 
       @adicionar-ingrediente="adicionarIngrediente"
+      @remover-ingrediente="removerIngrediente"
     />
   </main>
 </template>
