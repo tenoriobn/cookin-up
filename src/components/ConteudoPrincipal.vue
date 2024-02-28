@@ -2,10 +2,15 @@
 import SelecionarIngredientes from './SelecionarIngredientes.vue'
 import SuaLista from './SuaLista.vue';
   export default {
-  components: { SelecionarIngredientes, SuaLista },
     data () {
       return {
-        ingredientes: ['Alho', 'Manteiga', 'Orégano']
+        ingredientes: [] as string[]
+      }
+    },
+    components: { SelecionarIngredientes, SuaLista },
+    methods: {
+      adicionarIngrediente(ingrediente: string) {
+        this.ingredientes.push(ingrediente)
       }
     }
   }
@@ -14,7 +19,9 @@ import SuaLista from './SuaLista.vue';
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes />
+    <SelecionarIngredientes 
+      @adicionar-ingrediente="adicionarIngrediente"
+    />
   </main>
 </template>
 
