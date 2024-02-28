@@ -5,10 +5,10 @@
 
   export default {
     components: {
-    Banner,
-    ConteudoPrincipal,
-    Rodape
-}
+      Banner,
+      ConteudoPrincipal,
+      Rodape
+    }
   }
 </script>
 
