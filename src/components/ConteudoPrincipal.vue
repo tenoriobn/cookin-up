@@ -40,6 +40,7 @@ import SuaLista from './SuaLista.vue';
   
       <MostrarReceitas 
         v-else-if="conteudo === 'MostrarReceitas'" 
+        :ingredientes="ingredientes"
         @editar-receitas="navegar('SelecionarIngredientes')"
       />
     </KeepAlive>
